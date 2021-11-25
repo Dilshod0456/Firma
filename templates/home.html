@@ -7,7 +7,7 @@
   <p>{{ post.title }}</p>
   <div class="display">
     <div class="img">
-      <a href="{% url 'driver:Pic' %}">
+      <a href="/<int:pk>/pic">
       <img class="homepic" src="{{post.image.url}}" alt='Yangilik rasmi!' width="300" height="250"></a>
       <br><ul><ul><button style="margin-left: 35%; margin-top: 0.001%;"> <a href="/{{post.pk}}"> Batafsil...</a></button></ul></ul>
   </div>
