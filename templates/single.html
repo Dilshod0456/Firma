@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{%block content%} 
+
+</head>
+<div class='mijoz'>
+    <em>Yangilik nomi:</em>{{ post.title }}
+    <br> <em>Yangilik matni:</em>{{ post.discription}}
+    <br> <em>Rasmi:</em><p>
+        <a href="/{{post.pk}}/pic">
+            <img src="{{post.image.url}}" alt='Yangilik rasmi!' width="450" height="450">
+        </a>
+</div>
+
+{%endblock%}

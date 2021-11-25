@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block content %}
+<div class="mijoz">Firma haqida fikir bildirish:</div>
+<form method="post">
+    {% csrf_token %} {{forms.as_p}}
+<br><br><br><br>
+    <ul><ul><ul><ul><button type="submit">Taqdim etish</button></ul></ul></ul></ul>
+</form>
+
+{% endblock content %}
