@@ -1,109 +1,71 @@
-from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render, redirect, reverse
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from . import models
 from .forms import *
 from .formsf import *
 
-def home(request):
-    post = models.Post.objects.all()
-    context = {
-        'post': post
-    }
-    return render(request, 'home.html', context)
+class HomeView(ListView):
+    template_name = "Post/home.html"
+    queryset = models.Post.objects.all()
+    context_object_name = 'post'
 
-def lists(request):
-    driver = Driver.objects.all()
-    context = {
-        "drivers" : driver
-    }
-    return render(request,"foydalanuvchilar.html", context)
+class HomePostView(DetailView):
+    template_name = "Post/single.html"
+    queryset = models.Post.objects.all()
+    context_object_name = 'post'
+    
+class PicView(DetailView):
+    template_name = "Post/pic.html"
+    queryset = models.Post.objects.all()
+    context_object_name = 'post'
 
-def fikirlar(request):
-    fikir = models.Fikr.objects.all()
-    context = {
-        "fikirs" : fikir
-    }
-    return render(request,"fikIrlar.html", context)
+class ListsView(ListView):
+    template_name = "Drivers/foydalanuvchilar.html"
+    queryset = Driver.objects.all()
+    context_object_name = 'drivers'
 
-def about(request):
-    return render(request, "about.html")
+class DriverDetailView(DetailView):
+    template_name = "Drivers/details.html"
+    queryset = Driver.objects.all()
+    context_object_name = 'driver'
 
-def creat(request):
-    form = DriverModelForm()
-    if request.method == "POST":
-        form = DriverModelForm(request.POST)  
-        if form.is_valid():
-            form.save()
-            return redirect('/lists')
-             
-    context= {
-        'forms': DriverModelForm
-    }
-    return render(request, "creat.html", context)
+class DriverCreatView(CreateView):
+    template_name = 'Drivers/creat.html'
+    form_class = DriverModelForm
+    
+    def get_success_url(self):
+        return reverse('driver:Ro\'yxat')
 
-def creatf(request):
-    form = FikrForm
-    if request.method == "POST":
-        form = FikrForm(request.POST)  
-        if form.is_valid():
-            kim_tomonidan = form.cleaned_data['kim_tomonidan']
-            discription = form.cleaned_data['discription']
-            models.Fikr.objects.create(
-                kim_tomonidan = kim_tomonidan,
-                discription = discription,
-            )
-            return redirect('/fikirlar')
-             
-    context= {
-        'forms': FikrForm
-    }
-    return render(request, "creatf.html", context)
+class DriverUpdateView(UpdateView):
+    template_name = 'Drivers/update.html'
+    form_class = DriverModelForm
+    queryset = Driver.objects.all()
+    
+    def get_success_url(self):
+        return reverse('driver:Ro\'yxat')
 
-def  driver_detail(request, pk):
-    driver = get_object_or_404(Driver, id=pk)
-    context = {
-        "driver" : driver
-    }
-    return render(request, 'details.html', context)
+class FikirView(ListView):
+    template_name = "Fikirlar/fikirlar.html"
+    queryset = models.Fikr.objects.all()
+    context_object_name = 'fikirs'
 
-def  fikir_detail(request, pk):
-    fikir = get_object_or_404(models.Fikr, id=pk)
-    context = {
-        "fikir" : fikir
-    }
-    return render(request, 'detailsf.html', context)
+class FikirDetailView(DetailView):
+    template_name = "Fikirlar/detailsf.html"
+    queryset = models.Fikr.objects.all()
+    context_object_name = 'fikir'
 
-def  single(request, pk):
-    post = get_object_or_404(models.Post, id=pk)
-    context = {
-        "post" : post
-    }
-    return render(request, 'single.html' ,context)
-
-def  pic(request, pk):
-    post = get_object_or_404(models.Post, id=pk)
-    context = {
-        "post" : post
-    }
-    return render(request, 'pic.html' ,context)
-
-def tajriba(request):
-    return render(request, 'tajriba.html')
-
-def driver_update(request, pk):
-    driver = Driver.objects.get(id = pk)
-    form = DriverModelForm(instance=driver)
-    if request.method == "POST":
-        form = DriverModelForm(request.POST, instance=driver)  
-        if form.is_valid():
-            form.save()
-            return redirect('/lists')
-             
-    context={
-        'form':form,
-        'driver':driver
-    }
-    return render(request, 'update.html', context)
+class FikirCreatView(CreateView):
+    template_name = 'Fikirlar/creatf.html'
+    form_class = FikirModelForm
+    
+    def get_success_url(self):
+        return reverse('driver:Fikirlar')
+    
+class AboutView(TemplateView):
+    template_name = "Post/about.html"
+    
+class LabaratoriyaView(TemplateView):
+    template_name = "Post/tajriba.html"
 
 def deleted(request, pk):
     driver = Driver.objects.get(id = pk)

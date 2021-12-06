@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+
+</head>
+<div class="mijoz-1">Haydovchi {{ driver.Ismi }}ning ma'lumoti.</div>
+<hr class="hr12">
+<div class='details'>
+    <em>Ismi:</em>{{ driver.Ismi }}
+    <br><hr> <em>Familyasi:</em>{{ driver.Familyasi}}
+    <br><hr> <em>Yoshi:</em>{{ driver.Yoshi}}
+    <br><hr> <em>Staji:</em>{{ driver.Staji}}
+    <br><hr> <em>Yo'nalishi:</em>{{driver.Yonalish}}
+</div>
+<div class="det-btn">
+    <button><a href="{% url 'driver:Ro\'yxat' %}{{driver.id}}/update">O'zgartirish</a></button>
+    <button><a href="{% url 'driver:Ro\'yxat' %}{{driver.id}}/delete">O'chirish</a></button>
+</div>
+    <br><br><br><br><br><br>
+{% endblock content %}

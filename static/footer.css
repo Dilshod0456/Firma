@@ -1,0 +1,74 @@
+.background{
+    background-color: #1f7ae2;
+    margin: 0 -18px -22px -20px;
+    height: 300px;
+    border-radius: 170px 0 0 0;
+    display: flex;
+}
+
+.footer-name{
+    color: #ffffff;
+    transform: rotate(-45deg);
+    width: 5%;
+    font-weight: 800;
+    font-size: 45px;
+    margin: 90px 0 0 80px;
+}
+
+
+.gurux{
+    margin: 40px;
+    display: flex;
+}
+
+.bolma {
+    color: #ffffff;
+    margin: -10px 0 0px 30px;
+    font-size: 25px;
+}
+
+footer li{
+    color: #ffffff;
+    font-size: 16px;
+    list-style: none;
+    display: block;
+    padding-bottom: 10px;
+    align-items: left;
+}
+
+footer a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+footer i.fas, i.fab {
+    color: #ffffff;
+
+}
+
+.details em{
+    font-size: 30;
+    padding-right: 30px;
+    color: #1f7ae2;
+}
+
+.details{
+    font-size: 27px;
+}
+
+.det-btn {
+    float: right;
+}
+.det-btn button {
+    border-radius: 10px;
+    margin-top: 40px;
+    width: 130px;
+    height: 30px;
+    margin-right: 50px;
+}
+
+.det-btn button a{
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+</head>
+<div class="mijoz-1">Haydovchilarning ro'yxati</div>
+<hr class="hr12">
+<body>
+    {%for driver in drivers %}
+    <div class='mijoz-12'>
+        <a href="{{ driver.pk }}/">
+            <em>Ismi:</em>{{ driver.Ismi }} <em>Familyasi:</em>{{ driver.Familyasi}} <em>Yo'nalishi:</em>{{driver.Yonalish}}
+        </a>
+        <hr>
+    </div>
+    {%endfor%}
+</body>
+{% endblock content %}
