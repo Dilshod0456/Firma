@@ -1,8 +1,16 @@
 from django.shortcuts import render, redirect, reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from . import models
-from .forms import *
-from .formsf import *
+from .forms import DriverModelForm, NewUserForm, FikirModelForm
+#from .formsf import *
+
+class SigupView(CreateView):
+    template_name = "registration/signup.html"
+    form_class = NewUserForm
+    
+    def get_success_url(self):
+        return reverse("driver:Home")
 
 class HomeView(ListView):
     template_name = "Post/home.html"
@@ -19,27 +27,35 @@ class PicView(DetailView):
     queryset = models.Post.objects.all()
     context_object_name = 'post'
 
-class ListsView(ListView):
+class ListsView(LoginRequiredMixin,ListView):
     template_name = "Drivers/foydalanuvchilar.html"
-    queryset = Driver.objects.all()
+    queryset = models.Driver.objects.all()
     context_object_name = 'drivers'
 
-class DriverDetailView(DetailView):
+class DriverDetailView(LoginRequiredMixin,DetailView):
     template_name = "Drivers/details.html"
-    queryset = Driver.objects.all()
+    queryset = models.Driver.objects.all()
     context_object_name = 'driver'
 
-class DriverCreatView(CreateView):
+class DriverCreatView(LoginRequiredMixin, CreateView):
     template_name = 'Drivers/creat.html'
     form_class = DriverModelForm
     
     def get_success_url(self):
         return reverse('driver:Ro\'yxat')
 
-class DriverUpdateView(UpdateView):
+class DriverDeleteView(LoginRequiredMixin,DeleteView):
+    template_name = 'Drivers/delete.html'
+    form_class = DriverModelForm
+    queryset = models.Driver.objects.all()
+    
+    def get_success_url(self):
+        return reverse('driver:Ro\'yxat')
+
+class DriverUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'Drivers/update.html'
     form_class = DriverModelForm
-    queryset = Driver.objects.all()
+    queryset = models.Driver.objects.all()
     
     def get_success_url(self):
         return reverse('driver:Ro\'yxat')
@@ -66,8 +82,3 @@ class AboutView(TemplateView):
     
 class LabaratoriyaView(TemplateView):
     template_name = "Post/tajriba.html"
-
-def deleted(request, pk):
-    driver = Driver.objects.get(id = pk)
-    driver.delete()
-    return redirect('/lists')

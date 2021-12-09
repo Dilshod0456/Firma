@@ -5,6 +5,7 @@ app_name = 'driver'
 
 urlpatterns = [
     path('', HomeView.as_view(), name="Home"),
+    path('signup/', SigupView.as_view(), name = 'signup'),
     path('lists/', ListsView.as_view(), name="Ro\'yxat"),
     path('fikirlar/', FikirView.as_view(), name="Fikirlar"),
     path('about/', AboutView.as_view(), name="Haqida"),
@@ -16,5 +17,5 @@ urlpatterns = [
     path('lists/<int:pk>/', DriverDetailView.as_view(), name="Haydovchi-ma`lumotlari"),
     path('fikirlar/<int:pk>/', FikirDetailView.as_view(), name="Batafsil-fikirlar"),
     path('lists/<int:pk>/update', DriverUpdateView.as_view(), name="Taxrirlash"),
-    path('lists/<int:pk>/delete', deleted, name="delete"),
+    path('lists/<int:pk>/delete', DriverDeleteView.as_view(), name="delete"),
 ]

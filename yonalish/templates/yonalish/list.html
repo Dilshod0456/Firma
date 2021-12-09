@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+</head>
+<div class="mijoz-1">Yonalishlarning ro'yxati</div>
+<hr class="hr12">
+<body>
+    {% for yonalish in object_list %}
+    <div class='mijoz-12'>
+        <a href="#">
+            {{ yonalish.user.username }} 
+        </a>
+        <hr>
+    </div>
+    {%endfor%}
+<br><br><br><br>
+    <button class="det-btn1" style="margin-top: -30px; float: right;"><a href="{% url 'yonalish:Yonalish-yaratish' %}">Yonalish qo'shish</a></button>
+<br><br><br>
+</body>
+{% endblock content %}

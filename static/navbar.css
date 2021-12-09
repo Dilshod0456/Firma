@@ -1,0 +1,86 @@
+#header a{
+    color: black;
+    text-decoration: none;
+    margin: 5px;
+}
+
+#header{
+    list-style-type: none;
+    overflow: hidden;
+    float: left;
+    width: 100%;
+    height: 10%;
+    margin: 3px;
+    margin-left: -40px;
+    margin-top: -22px;
+    padding-left: 50px;
+    position: fixed;
+    display: block;
+    background-color: white;
+}
+
+#header i.fas.fa-truck{
+    width: 50px;
+    height: 50px;
+    margin: 1px;
+    margin-top: 12px;
+    margin-right: 6px;
+}
+
+#header .name{
+    color: #1f7ae2;
+    font-family:  'Poppins', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 30px;
+    margin-left: -40px;
+}
+
+#header .name1{
+    color: #0479ff;
+    font-family:  'Poppins', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 28px;
+    margin-left: -10px;
+    margin-right: 40px;
+}
+
+#header li{
+    display: inline;
+    margin-left: 15px;
+}
+
+.n-rigth{
+    display: block;
+    float: right;
+    overflow: hidden;
+}
+
+.logn{
+    display: inline;
+    margin-right: 30px;
+}
+
+.admin{
+    display: inline;
+}
+
+
+#header .container{
+    display: inline-flex;
+    width: 100%;
+}
+
+#header ul{
+    width: 90%;
+}
+
+#header li{
+    font-size: 18px;
+}
+
+/*Dropdown*/
+

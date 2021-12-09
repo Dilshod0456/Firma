@@ -6,4 +6,5 @@ admin.site.register(Driver)
 admin.site.register(Yonalish)
 admin.site.register(Post)
 admin.site.register(Fikr)
+admin.site.register(UserProfile)
 

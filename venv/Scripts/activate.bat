@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=D:\SUSYS\MBXK CRM\venv
+set VIRTUAL_ENV=D:\Darslar\Projects\firma site\venv
 
 if not defined PROMPT set PROMPT=$P$G
 
