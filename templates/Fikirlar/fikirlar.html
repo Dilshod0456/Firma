@@ -8,6 +8,7 @@
         <a href=" {{ fikir.pk }} ">
             <em>Kim tomonidan:</em>{{ fikir.kim_tomonidan }} </a>
     </div>
+    <hr>
     {%endfor%}
     <br><br><br><br><br>
     <button class="det-btn1" style="margin-top: -30px; float: right;"><a href="{% url 'driver:Fikir-yaratish' %}">Fikir bildirish</a></button>

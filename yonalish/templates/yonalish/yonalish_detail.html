@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block content %}
+
+</head>
+<div class="mijoz-1">Yonalish {{ yonalish.user.username }} ma'lumoti.</div>
+<hr class="hr12">
+<div class="det-btn">
+    <button><a href="{% url 'yonalish:yonalish-list' %}{{yonalish.id}}/update_detail">O'zgartirish</a></button>
+    <button><a href="{% url 'yonalish:yonalish-list' %}{{yonalish.id}}/delete">O'chirish</a></button>
+</div>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+{% endblock content %}

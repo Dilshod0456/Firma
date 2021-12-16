@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+<div class="mijoz-1">Yo'nalishlar ro'yxatdan o'chirish</div>
+<hr class="hr12">
+<h1>O'chirishga rozimisiz</h1>
+<hr>
+<form method="post">
+    {% csrf_token %} 
+    {{form.as_p}}
+    <br><br><br><br>
+    <ul><ul><ul><ul><button type="submit" style="margin-top: -50px; margin-left: -85px;" class="det-btn1">O'chirish</button></ul></ul></ul></ul>
+</form>
+
+{% endblock content %}

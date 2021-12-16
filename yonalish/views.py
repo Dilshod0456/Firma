@@ -23,3 +23,31 @@ class YonalishCreateView(LoginRequiredMixin,generic.CreateView):
         yonalish.profile = self.request.user.userprofile
         yonalish.save()
         return super(YonalishCreateView, self).form_valid(form)
+
+
+class YonalishDetailView(LoginRequiredMixin, generic.DetailView):
+    template_name = "yonalish/yonalish_detail.html"
+    context_object_name = "yonalish"
+
+    def get_queryset(self):
+        return Yonalish.objects.all()
+
+class YonalishUpdateView(LoginRequiredMixin, generic.UpdateView):
+    template_name = "yonalish/yonalish_update.html"
+    form_class = YonalishModelForms
+
+    def get_queryset(self):
+        return Yonalish.objects.all()
+
+    def get_success_url(self):
+        return reverse("yonalish:yonalish-list")
+
+class YonalishDeleteView(LoginRequiredMixin, generic.DeleteView):
+    template_name = "yonalish/yonalish_delete.html"
+    context_object_name = "yonalish"
+
+    def get_queryset(self):
+        return Yonalish.objects.all()
+
+    def get_success_url(self):
+        return reverse("yonalish:yonalish-list")

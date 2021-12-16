@@ -28,24 +28,24 @@ class PicView(DetailView):
     context_object_name = 'post'
 
 class ListsView(LoginRequiredMixin,ListView):
-    template_name = "Drivers/foydalanuvchilar.html"
+    template_name = "driver/foydalanuvchilar.html"
     queryset = models.Driver.objects.all()
     context_object_name = 'drivers'
 
 class DriverDetailView(LoginRequiredMixin,DetailView):
-    template_name = "Drivers/details.html"
+    template_name = "driver/details.html"
     queryset = models.Driver.objects.all()
     context_object_name = 'driver'
 
 class DriverCreatView(LoginRequiredMixin, CreateView):
-    template_name = 'Drivers/creat.html'
+    template_name = 'driver/creat.html'
     form_class = DriverModelForm
     
     def get_success_url(self):
         return reverse('driver:Ro\'yxat')
 
 class DriverDeleteView(LoginRequiredMixin,DeleteView):
-    template_name = 'Drivers/delete.html'
+    template_name = 'driver/delete.html'
     form_class = DriverModelForm
     queryset = models.Driver.objects.all()
     
@@ -53,7 +53,7 @@ class DriverDeleteView(LoginRequiredMixin,DeleteView):
         return reverse('driver:Ro\'yxat')
 
 class DriverUpdateView(LoginRequiredMixin, UpdateView):
-    template_name = 'Drivers/update.html'
+    template_name = 'driver/update.html'
     form_class = DriverModelForm
     queryset = models.Driver.objects.all()
     
