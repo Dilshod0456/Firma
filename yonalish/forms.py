@@ -8,4 +8,5 @@ class YonalishModelForms(forms.ModelForm):
         model = Yonalish
         fields = (
             'user',
+            'organisation',
         )

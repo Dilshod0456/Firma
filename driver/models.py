@@ -6,7 +6,9 @@ from django.db.models.fields.related import ForeignKey
 # Create your models here.
 
 class User(AbstractUser):
-    pass
+    is_organisor = models.BooleanField(default=True)
+    is_agent = models.BooleanField(default=False)
+    is_editor = models.BooleanField(default=False)
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
@@ -34,14 +36,15 @@ class Driver(models.Model):
     Familyasi = models.CharField(max_length=20)
     Yoshi = models.IntegerField(default=0)
     Staji = models.IntegerField(default=0)
-    Yonalish = models.ForeignKey("Yonalish", on_delete=models.CASCADE)
+    organisation = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
+    Yonalish = models.ForeignKey("Yonalish", null=True, blank=True, on_delete=models.SET_NULL)
 
     def  __str__(self):        
         return str(self.Ismi)
 
 class Yonalish(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    profile = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
+    organisation = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
 
     def  __str__(self):
         return str(self.user)

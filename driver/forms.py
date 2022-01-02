@@ -21,7 +21,8 @@ class DriverModelForm(forms.ModelForm):
             "Familyasi",
             "Yoshi",
             "Staji",
-            "Yonalish"            
+            "Yonalish" ,
+            "organisation",          
         )
     
 class DriverForm(forms.Form):

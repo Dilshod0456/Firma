@@ -1,9 +1,10 @@
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from . import models
 from .forms import DriverModelForm, NewUserForm, FikirModelForm
-#from .formsf import *
+from yonalish.mixins import OrganiserAndLoginRequiredMixin
 
 class SigupView(CreateView):
     template_name = "registration/signup.html"
@@ -29,22 +30,34 @@ class PicView(DetailView):
 
 class ListsView(LoginRequiredMixin,ListView):
     template_name = "driver/foydalanuvchilar.html"
-    queryset = models.Driver.objects.all()
     context_object_name = 'drivers'
+    
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_organisor:
+            queryset = models.Driver.objects.filter( organisation = user.userprofile)
+        else:
+            queryset = models.Driver.objects.filter( organisation = user.yonalish.organisation)
+            queryset = queryset.filter(Yonalish__user  = self.request.user)
+        if user.is_editor:
+            queryset = models.Driver.objects.all()     
+        return queryset
+        
+    
 
-class DriverDetailView(LoginRequiredMixin,DetailView):
+class DriverDetailView(OrganiserAndLoginRequiredMixin,DetailView):
     template_name = "driver/details.html"
     queryset = models.Driver.objects.all()
     context_object_name = 'driver'
 
-class DriverCreatView(LoginRequiredMixin, CreateView):
+class DriverCreatView(OrganiserAndLoginRequiredMixin, CreateView):
     template_name = 'driver/creat.html'
     form_class = DriverModelForm
     
     def get_success_url(self):
         return reverse('driver:Ro\'yxat')
 
-class DriverDeleteView(LoginRequiredMixin,DeleteView):
+class DriverDeleteView(OrganiserAndLoginRequiredMixin,DeleteView):
     template_name = 'driver/delete.html'
     form_class = DriverModelForm
     queryset = models.Driver.objects.all()
@@ -52,7 +65,7 @@ class DriverDeleteView(LoginRequiredMixin,DeleteView):
     def get_success_url(self):
         return reverse('driver:Ro\'yxat')
 
-class DriverUpdateView(LoginRequiredMixin, UpdateView):
+class DriverUpdateView(OrganiserAndLoginRequiredMixin, UpdateView):
     template_name = 'driver/update.html'
     form_class = DriverModelForm
     queryset = models.Driver.objects.all()

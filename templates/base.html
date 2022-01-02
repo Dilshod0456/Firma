@@ -24,7 +24,9 @@ MB Driver
                     <a href="{% url 'driver:Home' %}"> <li class="name" style="margin-left: -20px; font-size: 20px;"> Bosh sahifa</li></a>
                     <a href="{% url 'driver:Ro\'yxat' %}"><li>Ro'yxat</li></a>
                     <a href="{% url 'driver:Fikirlar' %}"><li>Fikirlar</li></a>
+                    {% if request.user.is_organisor %}
                     <a href="{% url 'yonalish:yonalish-list' %}"><li>Yo'nalishlar</li></a>
+                    {% endif %}
                     <a href="{% url 'driver:Labaratoriya' %}"><li>Labaratoriya</li></a>
                     <span class="n-rigth">
                         <div class="logn">
@@ -40,7 +42,9 @@ MB Driver
                             {% endif %}
                         </div>
                         <div class="admin">
+                            {% if request.user.is_organisor %}
                             <a href="{% url 'driver:Yaratish' %}"><li><i class="fas fa-id-card "></i></li></a>
+                            {% endif %}
                             <a href="/admin"><li><i class="fas fa-user-shield "></i></li></a>
                         </div>
                     </span>
