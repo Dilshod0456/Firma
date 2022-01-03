@@ -1,5 +1,7 @@
+import random
 from django.views import generic
 from django.urls import reverse
+from django.core.mail import send_mail
 from .mixins import OrganiserAndLoginRequiredMixin
 from driver.models import Yonalish
 from .forms import YonalishModelForms
@@ -21,9 +23,21 @@ class YonalishCreateView(OrganiserAndLoginRequiredMixin,generic.CreateView):
         return reverse('yonalish:yonalish-list')
     
     def form_valid(self, form):
-        yonalish = form.save(commit=False)
-        yonalish.profil = self.request.user.userprofile
-        yonalish.save()
+        user = form.save(commit=False)
+        user.is_organisor = False
+        user.is_agent = True
+        user.set_password(f"{random.randint(0,1000)}")
+        user.save()
+        Yonalish.objects.create(
+            user = user,
+            organisation = self.request.user.userprofile
+        )
+        send_mail(
+            subject="Bu Agent yaratilingan",
+            message="Yangi Agent yaratilgan",
+            from_email="susyswdg@gmal.Iom",
+            recipient_list=[user.email],
+        )
         return super(YonalishCreateView, self).form_valid(form)
 
 
